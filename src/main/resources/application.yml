@@ -1,0 +1,41 @@
+spring:
+  application:
+    name: BekbolatovNurdauletTaskManagementSystem
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/task_management}
+    username: ${SPRING_DATASOURCE_USERNAME:task_user}
+    password: ${SPRING_DATASOURCE_PASSWORD:task_password}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+server:
+  port: 8080
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
+
+app:
+  jwt:
+    secret: ${APP_JWT_SECRET:BekbolatovNurdauletSuperSecretJwtKeyForSpringBootTaskManagementSystem2026}
+    expiration-minutes: ${APP_JWT_EXPIRATION_MINUTES:120}
+  upload-dir: ${APP_UPLOAD_DIR:uploads}
+
+logging:
+  level:
+    kz.bekbolatovnurdaulet.taskmanagementsystem: INFO
+    org.springframework.security: INFO
